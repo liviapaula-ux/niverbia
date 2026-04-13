@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planejamento: 5 Anos Maria Beatriz</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #fdf2f8;
+        }
+        .card-hover {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(219, 39, 119, 0.15);
+        }
+        .modal {
+            transition: opacity 0.25s ease;
+        }
+        body.modal-active {
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body class="text-gray-800 antialiased">
+
+    <!-- Header Section -->
+    <header class="bg-white shadow-sm border-b-4 border-pink-300 py-8 px-4">
+        <div class="max-w-5xl mx-auto text-center">
+            <div class="inline-block bg-pink-100 text-pink-600 px-4 py-1 rounded-full text-sm font-bold mb-4 uppercase tracking-widest">Planejamento Familiar</div>
+            <h1 class="text-3xl md:text-5xl font-bold text-pink-600 mb-2 italic">Maria Beatriz</h1>
+            <p class="text-gray-500 text-lg font-medium">Comemoração Especial de 5 Anos 🎂</p>
+        </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto p-4 md:p-8 space-y-12">
+
+        <!-- 1. O Buffet de Pizzas -->
+        <section>
+            <div class="flex items-center space-x-3 mb-8">
+                <div class="bg-pink-500 text-white p-2 rounded-lg shadow-lg">🍕</div>
+                <h2 class="text-2xl font-bold text-gray-700 font-serif">Buffet de Rodízio</h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div class="bg-white p-5 rounded-2xl shadow-sm border border-pink-100 flex flex-col items-center text-center">
+                    <span class="text-3xl mb-3">🍽️</span>
+                    <h3 class="font-bold text-pink-600">Louça Completa</h3>
+                    <p class="text-xs text-gray-500">Pratos de louça, talheres inox e taças de vidro.</p>
+                </div>
+                <div class="bg-white p-5 rounded-2xl shadow-sm border border-pink-100 flex flex-col items-center text-center">
+                    <span class="text-3xl mb-3">🥤</span>
+                    <h3 class="font-bold text-pink-600">Bebidas Free</h3>
+                    <p class="text-xs text-gray-500">Coca (normal/zero), Guaraná, Água e Suco Laranja.</p>
+                </div>
+                <div class="bg-white p-5 rounded-2xl shadow-sm border border-pink-100 flex flex-col items-center text-center">
+                    <span class="text-3xl mb-3">🤵</span>
+                    <h3 class="font-bold text-pink-600">Garçons</h3>
+                    <p class="text-xs text-gray-500">Serviço de pizzas e bebidas incluso.</p>
+                </div>
+                <div class="bg-white p-5 rounded-2xl shadow-sm border border-pink-100 flex flex-col items-center text-center">
+                    <span class="text-3xl mb-3">🍕</span>
+                    <h3 class="font-bold text-pink-600">Pizzas</h3>
+                    <p class="text-xs text-gray-500">7 sabores de pizzas selecionados por nós.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. Comparativo de Cenários -->
+        <section>
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
+                <div class="flex items-center space-x-3">
+                    <div class="bg-pink-500 text-white p-2 rounded-lg shadow-lg">👥</div>
+                    <h2 class="text-2xl font-bold text-gray-700 font-serif">Escolha o Cenário</h2>
+                </div>
+                <p class="text-sm text-pink-500 font-semibold animate-pulse">✨ Clique nos cards para ver a lista de nomes</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Cenário 1 -->
+                <div onclick="openModal('lista1')" class="bg-white rounded-3xl p-6 shadow-md border-2 border-transparent border-dashed hover:border-pink-300 card-hover">
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="bg-gray-100 text-gray-600 text-[10px] font-bold px-3 py-1 rounded-full uppercase">Cenário A</span>
+                        <span class="text-pink-400">👁️</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800">Sem Parentes</h3>
+                    <p class="text-sm text-gray-500 mb-6">Amigos de escola e convívio diário.</p>
+                    <div class="space-y-2 mb-6 text-sm">
+                        <div class="flex justify-between"><span>Buffet:</span> <span class="font-bold">~R$ 2.100</span></div>
+                        <div class="flex justify-between text-gray-400 italic"><span>+ Extras:</span> <span>R$ 3.900</span></div>
+                    </div>
+                    <div class="border-t border-pink-50 pt-4">
+                        <p class="text-3xl font-bold text-pink-600">R$ 6.000</p>
+                    </div>
+                </div>
+                
+                <!-- Cenário 2 -->
+                <div onclick="openModal('lista2')" class="bg-white rounded-3xl p-6 shadow-xl border-4 border-pink-400 relative card-hover scale-105 z-10">
+                    <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-pink-500 text-white text-[10px] font-bold px-4 py-1 rounded-full uppercase shadow-lg">Mais Equilibrada</div>
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="bg-pink-100 text-pink-600 text-[10px] font-bold px-3 py-1 rounded-full uppercase">Cenário B</span>
+                        <span class="text-pink-500">👁️</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800">Tio Toninho</h3>
+                    <p class="text-sm text-gray-500 mb-6">Lista 1 + Presença do Tio Toninho.</p>
+                    <div class="space-y-2 mb-6 text-sm">
+                        <div class="flex justify-between"><span>Buffet:</span> <span class="font-bold">~R$ 2.650</span></div>
+                        <div class="flex justify-between text-gray-400 italic"><span>+ Extras:</span> <span>R$ 3.900</span></div>
+                    </div>
+                    <div class="border-t border-pink-50 pt-4">
+                        <p class="text-3xl font-bold text-pink-600">R$ 6.550</p>
+                    </div>
+                </div>
+
+                <!-- Cenário 3 -->
+                <div onclick="openModal('lista3')" class="bg-white rounded-3xl p-6 shadow-md border-2 border-transparent border-dashed hover:border-pink-300 card-hover">
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="bg-gray-100 text-gray-600 text-[10px] font-bold px-3 py-1 rounded-full uppercase">Cenário C</span>
+                        <span class="text-pink-400">👁️</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800">Família Completa</h3>
+                    <p class="text-sm text-gray-500 mb-6">Tio Toninho + Família Camara.</p>
+                    <div class="space-y-2 mb-6 text-sm">
+                        <div class="flex justify-between"><span>Buffet:</span> <span class="font-bold">~R$ 3.350</span></div>
+                        <div class="flex justify-between text-gray-400 italic"><span>+ Extras:</span> <span>R$ 3.900</span></div>
+                    </div>
+                    <div class="border-t border-pink-50 pt-4">
+                        <p class="text-3xl font-bold text-pink-600">R$ 7.250</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Detalhes de Gastos Extras -->
+        <section class="bg-white rounded-3xl shadow-sm border border-pink-100 p-6 md:p-8">
+            <h2 class="text-xl font-bold text-gray-700 mb-6 flex items-center">
+                <span class="mr-2 text-2xl">💰</span> Gastos Extras Necessários
+            </h2>
+            <div class="overflow-x-auto">
+                <table class="w-full text-left text-sm">
+                    <thead>
+                        <tr class="text-gray-400 uppercase text-[10px] border-b">
+                            <th class="pb-3">Fornecedor / Item</th>
+                            <th class="pb-3 text-right">Valor</th>
+                            <th class="pb-3 hidden md:table-cell px-6">Observação</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-gray-600">
+                        <tr class="border-b hover:bg-pink-50 transition-colors">
+                            <td class="py-4 font-semibold text-gray-800">Polaris (Banda)</td>
+                            <td class="py-4 text-right font-bold text-pink-600">R$ 2.000,00</td>
+                            <td class="py-4 hidden md:table-cell px-6">Música e animação da festa.</td>
+                        </tr>
+                        <tr class="border-b hover:bg-pink-50 transition-colors">
+                            <td class="py-4 font-semibold text-gray-800">Brinquedos</td>
+                            <td class="py-4 text-right font-bold text-pink-600">R$ 700,00</td>
+                            <td class="py-4 hidden md:table-cell px-6">Aluguel da estrutura de diversão.</td>
+                        </tr>
+                        <tr class="border-b hover:bg-pink-50 transition-colors">
+                            <td class="py-4 font-semibold text-gray-800">Tia de Brincar</td>
+                            <td class="py-4 text-right font-bold text-pink-600">R$ 700,00</td>
+                            <td class="py-4 hidden md:table-cell px-6">Monitoria e recreação infantil.</td>
+                        </tr>
+                        <tr class="border-b hover:bg-pink-50 transition-colors">
+                            <td class="py-4 font-semibold text-gray-800">Decoração</td>
+                            <td class="py-4 text-right font-bold text-pink-600">R$ 300,00</td>
+                            <td class="py-4 hidden md:table-cell px-6">Painel, balões e mesa temática.</td>
+                        </tr>
+                        <tr class="hover:bg-pink-50 transition-colors">
+                            <td class="py-4 font-semibold text-gray-800">Aluguel Mesas</td>
+                            <td class="py-4 text-right font-bold text-pink-600">R$ 200,00</td>
+                            <td class="py-4 hidden md:table-cell px-6">Necessário para acomodar todos.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="mt-8 p-6 bg-pink-50 rounded-2xl flex flex-col md:flex-row justify-between items-center gap-4">
+                <span class="text-sm font-bold uppercase text-pink-400 tracking-widest">Total dos Adicionais</span>
+                <span class="text-3xl font-black text-pink-600">R$ 3.900,00</span>
+            </div>
+        </section>
+
+        <!-- Notas e Avisos -->
+        <div class="bg-gray-800 rounded-3xl p-8 text-white shadow-2xl relative overflow-hidden">
+            <div class="absolute -right-10 -bottom-10 opacity-10 text-[150px]">🎂</div>
+            <h2 class="text-2xl font-bold mb-6 flex items-center">
+                <span class="mr-3">📌</span> Atenção aos Detalhes
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-sm opacity-90">
+                <div class="space-y-4">
+                    <p class="flex items-start"><span class="mr-2">🎸</span> <strong>Polaris:</strong> Confirmado que é a banda de música. Não inclui infraestrutura física (mesas/cadeiras).</p>
+                    <p class="flex items-start"><span class="mr-2">🪑</span> <strong>Mobiliário:</strong> Como a banda não tem mesas, o custo de R$ 200,00 para aluguel é essencial.</p>
+                </div>
+                <div class="space-y-4 border-l border-gray-700 pl-8">
+                    <p class="flex items-start"><span class="mr-2">🥤</span> <strong>Garçom de Bebidas:</strong> Garantido em todos os cenários (temos mais de 26 adultos em todos).</p>
+                    <p class="flex items-start"><span class="mr-2">🍕</span> <strong>Sabores:</strong> Precisamos escolher as 7 pizzas (sugiro incluir 2 doces para as crianças).</p>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Modal para Listas de Convidados -->
+    <div id="guestModal" class="modal opacity-0 pointer-events-none fixed w-full h-full top-0 left-0 flex items-center justify-center z-50">
+        <div class="modal-overlay absolute w-full h-full bg-black opacity-50" onclick="closeModal()"></div>
+        
+        <div class="modal-container bg-white w-11/12 md:max-w-2xl mx-auto rounded-3xl shadow-2xl z-50 overflow-y-auto max-h-[80vh]">
+            <div class="modal-content py-6 text-left px-8">
+                <div class="flex justify-between items-center pb-5 border-b mb-6">
+                    <p class="text-2xl font-bold text-pink-600" id="modalTitle"></p>
+                    <button class="text-gray-400 hover:text-gray-600 transition-colors text-3xl" onclick="closeModal()">&times;</button>
+                </div>
+                
+                <div id="guestListContainer" class="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm text-gray-600">
+                    <!-- Guest names will be injected here -->
+                </div>
+
+                <div class="flex justify-end pt-8">
+                    <button class="bg-pink-600 px-6 py-2 rounded-xl text-white font-bold hover:bg-pink-700 transition-all" onclick="closeModal()">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="text-center py-12 text-gray-400 text-xs uppercase tracking-widest">
+        5 Anos da Bia • Organização de Evento
+    </div>
+
+    <script>
+        const guestData = {
+            lista1: {
+                title: "Lista 1 | Sem parentes",
+                guests: ["Mãe Manu", "Mãe Alice", "Mãe Catarina", "Mãe Julia", "Mãe Liz", "Mãe Laura Netto", "Mãe Laurinha", "Mãe Luisa", "Mãe Elisa", "Mãe da Aurora", "Andreia (Vovó)", "Vanderleia", "André", "Alice", "Pai", "Mãe", "Liliane", "Giuliano", "Manu", "Cristian", "Alessandra", "Carla", "Maicon", "Kamille", "Erich", "Má"]
+            },
+            lista2: {
+                title: "Lista 2 | Tio Toninho",
+                guests: ["Mãe Manu", "Mãe Alice", "Mãe Catarina", "Mãe Julia", "Mãe Liz", "Mãe Laura Netto", "Mãe Laurinha", "Mãe Luisa", "Mãe Elisa", "Mãe da Aurora", "Andreia (Vovó)", "Vanderleia", "André", "Alice", "Pai", "Mãe", "Liliane", "Giuliano", "Manu", "Tio Toninho", "Cristian", "Alessandra", "Carla", "Maicon", "Kamille", "Erich", "Má"]
+            },
+            lista3: {
+                title: "Lista 3 | Tio Toninho + Família Camara",
+                guests: ["Mãe Manu", "Mãe Alice", "Mãe Catarina", "Mãe Julia", "Mãe Liz", "Mãe Laura Netto", "Mãe Laurinha", "Mãe Luisa", "Mãe Elisa", "Mãe da Aurora", "Andreia (Vovó)", "Vanderleia", "André", "Alice", "Pai", "Mãe", "Liliane", "Giuliano", "Manu", "Tio Toninho", "Família Camara (Diversos)", "Camila", "Fábio", "Cristian", "Alessandra", "Carla", "Maicon", "Kamille", "Erich", "Má"]
+            }
+        };
+
+        function openModal(key) {
+            const data = guestData[key];
+            const titleEl = document.getElementById('modalTitle');
+            const containerEl = document.getElementById('guestListContainer');
+            const modal = document.getElementById('guestModal');
+
+            titleEl.innerText = data.title;
+            containerEl.innerHTML = '';
+            
+            data.guests.forEach(name => {
+                const item = document.createElement('div');
+                item.className = 'flex items-center space-x-2 bg-pink-50 p-2 rounded-lg';
+                item.innerHTML = `<span class="text-pink-400">❤</span> <span>${name}</span>`;
+                containerEl.appendChild(item);
+            });
+
+            modal.classList.remove('opacity-0', 'pointer-events-none');
+            document.body.classList.add('modal-active');
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('guestModal');
+            modal.classList.add('opacity-0', 'pointer-events-none');
+            document.body.classList.remove('modal-active');
+        }
+    </script>
+</body>
+</html>
