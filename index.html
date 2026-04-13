@@ -3,419 +3,284 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Planejamento: 5 Anos Maria Beatriz</title>
+    <title>Simulador: 5 Anos Maria Beatriz</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #fdf2f8;
-        }
-        .card-hover {
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-        .card-hover:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(219, 39, 119, 0.15);
-        }
-        .modal {
-            transition: opacity 0.25s ease;
-        }
-        body.modal-active {
-            overflow: hidden;
-        }
-        /* Barra de rolagem personalizada e bem visível */
-        .custom-scroll::-webkit-scrollbar {
-            width: 10px;
-        }
-        .custom-scroll::-webkit-scrollbar-track {
-            background: #f1f1f1;
-            border-radius: 10px;
-        }
-        .custom-scroll::-webkit-scrollbar-thumb {
-            background: #f9a8d4;
-            border-radius: 10px;
-            border: 2px solid #f1f1f1;
-        }
-        .custom-scroll::-webkit-scrollbar-thumb:hover {
-            background: #f472b6;
-        }
+        body { font-family: 'Poppins', sans-serif; background-color: #fdf2f8; }
+        .custom-scroll::-webkit-scrollbar { width: 8px; }
+        .custom-scroll::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 10px; }
+        .custom-scroll::-webkit-scrollbar-thumb { background: #f9a8d4; border-radius: 10px; }
+        .modal { transition: opacity 0.25s ease; }
+        body.modal-active { overflow: hidden; }
+        .checkbox-pink:checked { background-color: #ec4899; border-color: #ec4899; }
     </style>
 </head>
-<body class="text-gray-800 antialiased">
+<body class="text-gray-800 antialiased pb-20">
 
-    <!-- Header Section -->
-    <header class="bg-white shadow-sm border-b-4 border-pink-300 py-8 px-4">
-        <div class="max-w-5xl mx-auto text-center">
-            <div class="inline-block bg-pink-100 text-pink-600 px-4 py-1 rounded-full text-sm font-bold mb-4 uppercase tracking-widest">Orçamento & Convidados</div>
-            <h1 class="text-3xl md:text-5xl font-bold text-pink-600 mb-2 italic">Maria Beatriz • 5 Anos</h1>
-            <p class="text-gray-500 text-lg font-medium">Dashboard de Tomada de Decisão</p>
+    <!-- Cabeçalho com Resumo de Extras -->
+    <header class="bg-white shadow-md border-b-4 border-pink-300 py-4 px-4 sticky top-0 z-30">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+            <div>
+                <h1 class="text-xl md:text-2xl font-bold text-pink-600 italic">Maria Beatriz • 5 Anos</h1>
+                <p class="text-gray-500 text-[10px] uppercase font-bold tracking-tighter">Simulador de Custos em Tempo Real</p>
+            </div>
+            <div class="flex gap-4">
+                <div class="bg-pink-50 px-4 py-1 rounded-xl border border-pink-100 text-center">
+                    <span class="text-[9px] uppercase font-bold text-pink-400 block">Extras Selecionados</span>
+                    <span id="globalExtraDisplay" class="text-lg font-black text-pink-600">R$ 3.900,00</span>
+                </div>
+            </div>
         </div>
     </header>
 
-    <main class="max-w-6xl mx-auto p-4 md:p-8 space-y-12">
+    <main class="max-w-6xl mx-auto p-4 md:p-8 space-y-10">
 
-        <!-- 1. O Buffet de Pizzas -->
-        <section>
-            <div class="flex items-center space-x-3 mb-8">
-                <div class="bg-pink-500 text-white p-2 rounded-lg shadow-lg">🍕</div>
-                <h2 class="text-2xl font-bold text-gray-700 font-serif">Buffet de Rodízio</h2>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                <div class="bg-white p-5 rounded-2xl shadow-sm border border-pink-100">
-                    <div class="text-2xl mb-2">🍽️</div>
-                    <h3 class="font-bold text-pink-600 uppercase text-xs mb-1">Louça & Inox</h3>
-                    <p class="text-[11px] text-gray-500">Pratos de louça, talheres inox, taças de vidro.</p>
-                </div>
-                <div class="bg-white p-5 rounded-2xl shadow-sm border border-pink-100">
-                    <div class="text-2xl mb-2">🥤</div>
-                    <h3 class="font-bold text-pink-600 uppercase text-xs mb-1">Bebidas</h3>
-                    <p class="text-[11px] text-gray-500">Coca (normal/zero), Guaraná, Água e Suco Laranja.</p>
-                </div>
-                <div class="bg-white p-5 rounded-2xl shadow-sm border border-pink-100">
-                    <div class="text-2xl mb-2">🤵</div>
-                    <h3 class="font-bold text-pink-600 uppercase text-xs mb-1">Staff</h3>
-                    <p class="text-[11px] text-gray-500">Garçons para servir pizzas e bebidas inclusos.</p>
-                </div>
-                <div class="bg-white p-5 rounded-2xl shadow-sm border border-pink-100">
-                    <div class="text-2xl mb-2">🍕</div>
-                    <h3 class="font-bold text-pink-600 uppercase text-xs mb-1">Rodízio</h3>
-                    <p class="text-[11px] text-gray-500">7 sabores de pizzas à nossa escolha.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- 2. Comparativo de Cenários -->
-        <section>
-            <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
-                <div class="flex items-center space-x-3">
-                    <div class="bg-pink-500 text-white p-2 rounded-lg shadow-lg">👥</div>
-                    <h2 class="text-2xl font-bold text-gray-700 font-serif">Comparar Listas</h2>
-                </div>
-                <p class="text-sm text-pink-500 font-semibold animate-pulse">✨ Clique no card para abrir a lista completa</p>
+        <!-- CONFIGURAÇÃO DE CUSTOS DE ESTRUTURA & BANDA -->
+        <section class="bg-white rounded-3xl shadow-sm border border-pink-100 p-6">
+            <div class="flex items-center space-x-3 mb-6">
+                <div class="bg-pink-500 text-white p-2 rounded-lg shadow-md">⚙️</div>
+                <h2 class="text-lg font-bold text-gray-700 font-serif">Ajustar Custos de Estrutura & Banda</h2>
             </div>
             
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Cenário 1 -->
-                <div onclick="openModal('lista1')" class="bg-white rounded-3xl p-6 shadow-md border-2 border-transparent hover:border-pink-300 card-hover">
-                    <div class="flex justify-between items-start mb-4">
-                        <span class="bg-gray-100 text-gray-600 text-[10px] font-bold px-3 py-1 rounded-full uppercase">Cenário 1</span>
-                        <span class="text-pink-400">🔍</span>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-800">Sem Parentes</h3>
-                    <p class="text-sm text-gray-500 mb-6">Amigos e escola.</p>
-                    <div class="space-y-2 mb-6 text-sm">
-                        <div class="flex justify-between border-b border-pink-50 pb-2"><span>Buffet:</span> <span class="font-bold">R$ 2.075,70</span></div>
-                        <div class="flex justify-between text-gray-400"><span>+ Fixos:</span> <span>R$ 3.900,00</span></div>
-                    </div>
-                    <div class="pt-2">
-                        <p class="text-3xl font-bold text-pink-600">R$ 5.975,70</p>
-                    </div>
-                </div>
-                
-                <!-- Cenário 2 -->
-                <div onclick="openModal('lista2')" class="bg-white rounded-3xl p-6 shadow-xl border-4 border-pink-400 relative card-hover scale-105 z-10">
-                    <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-pink-500 text-white text-[10px] font-bold px-4 py-1 rounded-full uppercase shadow-lg">Mais Provável</div>
-                    <div class="flex justify-between items-start mb-4">
-                        <span class="bg-pink-100 text-pink-600 text-[10px] font-bold px-3 py-1 rounded-full uppercase">Cenário 2</span>
-                        <span class="text-pink-500">🔍</span>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-800">Tio Toninho</h3>
-                    <p class="text-sm text-gray-500 mb-6">Lista 1 + Família do Toninho.</p>
-                    <div class="space-y-2 mb-6 text-sm">
-                        <div class="flex justify-between border-b border-pink-50 pb-2"><span>Buffet:</span> <span class="font-bold">R$ 2.547,45</span></div>
-                        <div class="flex justify-between text-gray-400"><span>+ Fixos:</span> <span>R$ 3.900,00</span></div>
-                    </div>
-                    <div class="pt-2">
-                        <p class="text-3xl font-bold text-pink-600">R$ 6.447,45</p>
-                    </div>
-                </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3" id="extrasContainer">
+                <!-- Gerado por JS -->
+            </div>
+        </section>
 
-                <!-- Cenário 3 -->
-                <div onclick="openModal('lista3')" class="bg-white rounded-3xl p-6 shadow-md border-2 border-transparent hover:border-pink-300 card-hover">
-                    <div class="flex justify-between items-start mb-4">
-                        <span class="bg-gray-100 text-gray-600 text-[10px] font-bold px-3 py-1 rounded-full uppercase">Cenário 3</span>
-                        <span class="text-pink-400">🔍</span>
+        <!-- CARDS DE CENÁRIOS -->
+        <section class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Cenário 1 -->
+            <div onclick="openModal('lista1')" class="bg-white rounded-3xl p-6 shadow-md border-2 border-transparent hover:border-pink-300 cursor-pointer transition-all">
+                <div class="flex justify-between mb-4">
+                    <span class="bg-gray-100 text-gray-500 text-[10px] font-bold px-2 py-1 rounded-md uppercase">Cenário 1</span>
+                    <span class="text-pink-300">👁️</span>
+                </div>
+                <h3 class="text-lg font-bold text-gray-800">Sem Parentes</h3>
+                <p class="text-[11px] text-gray-500 mb-4 leading-tight">Mães da escola + tios e avós + amigos próximos</p>
+                <div class="space-y-1 text-sm border-t pt-4">
+                    <div class="flex justify-between"><span>Buffet:</span> <span class="font-bold">R$ 2.421,65</span></div>
+                    <div class="flex justify-between text-gray-400"><span>Extras:</span> <span id="extra-lista1">R$ 0</span></div>
+                    <div class="flex justify-between text-pink-600 text-2xl font-black mt-2 pt-2 border-t border-pink-50">
+                        <span>TOTAL:</span> <span id="total-lista1">R$ 0</span>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-800">Família Completa</h3>
-                    <p class="text-sm text-gray-500 mb-6">Toninho + Família Camara.</p>
-                    <div class="space-y-2 mb-6 text-sm">
-                        <div class="flex justify-between border-b border-pink-50 pb-2"><span>Buffet:</span> <span class="font-bold">R$ 3.239,35</span></div>
-                        <div class="flex justify-between text-gray-400"><span>+ Fixos:</span> <span>R$ 3.900,00</span></div>
+                </div>
+            </div>
+
+            <!-- Cenário 2 -->
+            <div onclick="openModal('lista2')" class="bg-white rounded-3xl p-6 shadow-xl border-4 border-pink-400 relative cursor-pointer transition-all scale-105 z-10">
+                <div class="absolute -top-3 left-6 bg-pink-500 text-white text-[9px] font-bold px-3 py-1 rounded-full uppercase shadow-lg">Intermediário</div>
+                <div class="flex justify-between mb-4">
+                    <span class="bg-pink-100 text-pink-600 text-[10px] font-bold px-2 py-1 rounded-md uppercase">Cenário 2</span>
+                    <span class="text-pink-500">👁️</span>
+                </div>
+                <h3 class="text-lg font-bold text-gray-800">Com Tio Toninho</h3>
+                <p class="text-[11px] text-gray-500 mb-4 leading-tight">Mães da escola + tios e avós + amigos próximos + família Tio Toninho</p>
+                <div class="space-y-1 text-sm border-t pt-4">
+                    <div class="flex justify-between"><span>Buffet:</span> <span class="font-bold">R$ 2.956,30</span></div>
+                    <div class="flex justify-between text-gray-400"><span>Extras:</span> <span id="extra-lista2">R$ 0</span></div>
+                    <div class="flex justify-between text-pink-600 text-2xl font-black mt-2 pt-2 border-t border-pink-50">
+                        <span>TOTAL:</span> <span id="total-lista2">R$ 0</span>
                     </div>
-                    <div class="pt-2">
-                        <p class="text-3xl font-bold text-pink-600">R$ 7.139,35</p>
+                </div>
+            </div>
+
+            <!-- Cenário 3 -->
+            <div onclick="openModal('lista3')" class="bg-white rounded-3xl p-6 shadow-md border-2 border-transparent hover:border-pink-300 cursor-pointer transition-all">
+                <div class="flex justify-between mb-4">
+                    <span class="bg-gray-100 text-gray-500 text-[10px] font-bold px-2 py-1 rounded-md uppercase">Cenário 3</span>
+                    <span class="text-pink-400">👁️</span>
+                </div>
+                <h3 class="text-lg font-bold text-gray-800">Com Toninho + Camara</h3>
+                <p class="text-[11px] text-gray-500 mb-4 leading-tight">Mães da escola + tios e avós + amigos próximos + família Tio Toninho + Camaras</p>
+                <div class="space-y-1 text-sm border-t pt-4">
+                    <div class="flex justify-between"><span>Buffet:</span> <span class="font-bold">R$ 4.151,40</span></div>
+                    <div class="flex justify-between text-gray-400"><span>Extras:</span> <span id="extra-lista3">R$ 0</span></div>
+                    <div class="flex justify-between text-pink-600 text-2xl font-black mt-2 pt-2 border-t border-pink-50">
+                        <span>TOTAL:</span> <span id="total-lista3">R$ 0</span>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- 3. Detalhes de Gastos Extras -->
-        <section class="bg-white rounded-3xl shadow-sm border border-pink-100 p-6 md:p-8">
-            <h2 class="text-xl font-bold text-gray-700 mb-6 flex items-center">
-                <span class="mr-2 text-2xl">⚡</span> Custos de Estrutura & Banda
-            </h2>
-            <div class="overflow-x-auto">
-                <table class="w-full text-left text-sm">
-                    <thead>
-                        <tr class="text-gray-400 uppercase text-[10px] border-b">
-                            <th class="pb-3">Fornecedor</th>
-                            <th class="pb-3 text-right">Valor</th>
-                            <th class="pb-3 hidden md:table-cell px-6 text-pink-400">Observação</th>
-                        </tr>
-                    </thead>
-                    <tbody class="text-gray-600">
-                        <tr class="border-b hover:bg-pink-50 transition-colors">
-                            <td class="py-4 font-semibold text-gray-800">Polaris (Banda)</td>
-                            <td class="py-4 text-right font-bold text-pink-600">R$ 2.000,00</td>
-                            <td class="py-4 hidden md:table-cell px-6 text-xs">Apenas a banda musical. Não inclui mesas.</td>
-                        </tr>
-                        <tr class="border-b hover:bg-pink-50 transition-colors">
-                            <td class="py-4 font-semibold text-gray-800">Brinquedos</td>
-                            <td class="py-4 text-right font-bold text-pink-600">R$ 700,00</td>
-                            <td class="py-4 hidden md:table-cell px-6 text-xs">Locação dos itens de lazer infantil.</td>
-                        </tr>
-                        <tr class="border-b hover:bg-pink-50 transition-colors">
-                            <td class="py-4 font-semibold text-gray-800">Tia de Brincar</td>
-                            <td class="py-4 text-right font-bold text-pink-600">R$ 700,00</td>
-                            <td class="py-4 hidden md:table-cell px-6 text-xs">Monitoria e animação para as crianças.</td>
-                        </tr>
-                        <tr class="border-b hover:bg-pink-50 transition-colors">
-                            <td class="py-4 font-semibold text-gray-800">Decoração</td>
-                            <td class="py-4 text-right font-bold text-pink-600">R$ 300,00</td>
-                            <td class="py-4 hidden md:table-cell px-6 text-xs">Arranjos e tema da Maria Beatriz.</td>
-                        </tr>
-                        <tr class="hover:bg-pink-50 transition-colors">
-                            <td class="py-4 font-semibold text-gray-800">Aluguel de Mesas</td>
-                            <td class="py-4 text-right font-bold text-pink-600">R$ 200,00</td>
-                            <td class="py-4 hidden md:table-cell px-6 text-xs">Obrigatório, pois a banda não possui.</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div class="mt-8 p-6 bg-pink-50 rounded-2xl flex flex-col md:flex-row justify-between items-center gap-4">
-                <span class="text-sm font-bold uppercase text-pink-400 tracking-widest">Soma dos Investimentos</span>
-                <span class="text-3xl font-black text-pink-600">R$ 3.900,00</span>
+        <!-- INFO BUFFET -->
+        <section class="bg-gray-900 rounded-3xl p-8 text-white">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div>
+                    <h3 class="text-pink-400 font-bold uppercase text-xs tracking-widest mb-6 italic">Buffet Rodízio</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs opacity-80">
+                        <div class="flex items-center space-x-2"><span>🍕</span> <span>7 Sabores de Pizza</span></div>
+                        <div class="flex items-center space-x-2"><span>🥤</span> <span>Refri, Coca Zero e Água</span></div>
+                        <div class="flex items-center space-x-2"><span>🍊</span> <span>Suco Natural de Laranja</span></div>
+                        <div class="flex items-center space-x-2"><span>🍽️</span> <span>Louça, Inox e Vidro</span></div>
+                        <div class="flex items-center space-x-2"><span>🤵</span> <span>Garçom Pizza e Bebidas</span></div>
+                    </div>
+                </div>
+                <div class="border-l border-gray-700 pl-0 md:pl-8">
+                    <h3 class="text-pink-400 font-bold uppercase text-xs tracking-widest mb-6 italic">Valores Base</h3>
+                    <p class="text-sm">Adulto/Escola: <span class="font-bold text-pink-500">R$ 62,90</span></p>
+                    <p class="text-sm">Criança/Meia: <span class="font-bold text-pink-500">R$ 31,45</span></p>
+                </div>
             </div>
         </section>
-
-        <!-- Notas e Avisos -->
-        <div class="bg-gray-800 rounded-3xl p-8 text-white shadow-2xl">
-            <h2 class="text-xl font-bold mb-4 flex items-center">
-                <span class="mr-2">💡</span> Lembretes para a Escolha
-            </h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm opacity-90">
-                <ul class="space-y-3">
-                    <li class="flex items-center"><span class="text-pink-400 mr-2">✔</span> Como a banda <strong>Polaris</strong> não tem mesas, o aluguel de R$ 200 é fixo.</li>
-                    <li class="flex items-center"><span class="text-pink-400 mr-2">✔</span> Buffet: R$ 62,90 por Adulto | R$ 31,45 Meia (crianças).</li>
-                </ul>
-                <ul class="space-y-3">
-                    <li class="flex items-center"><span class="text-pink-400 mr-2">✔</span> Em qualquer cenário, ganhamos o garçom de bebidas grátis (+26 adultos).</li>
-                    <li class="flex items-center"><span class="text-pink-400 mr-2">✔</span> A barra de rolagem nas listas permite conferir cada convidado.</li>
-                </ul>
-            </div>
-        </div>
 
     </main>
 
-    <!-- Modal para Listas de Convidados -->
-    <div id="guestModal" class="modal opacity-0 pointer-events-none fixed w-full h-full top-0 left-0 flex items-center justify-center z-50">
-        <div class="modal-overlay absolute w-full h-full bg-black opacity-50" onclick="closeModal()"></div>
-        
-        <div class="modal-container bg-white w-11/12 md:max-w-4xl mx-auto rounded-3xl shadow-2xl z-50 overflow-hidden flex flex-col max-h-[85vh]">
-            <div class="modal-content p-8 flex flex-col h-full overflow-hidden">
-                <div class="flex justify-between items-center pb-5 border-b mb-6">
+    <!-- MODAL DE LISTA -->
+    <div id="guestModal" class="modal opacity-0 pointer-events-none fixed w-full h-full top-0 left-0 flex items-center justify-center z-50 p-4">
+        <div class="modal-overlay absolute w-full h-full bg-black/70" onclick="closeModal()"></div>
+        <div class="modal-container bg-white w-full max-w-4xl rounded-3xl shadow-2xl z-50 overflow-hidden flex flex-col max-h-[90vh]">
+            <div class="p-6 md:p-8 flex flex-col h-full">
+                <div class="flex justify-between items-center border-b pb-4 mb-6">
                     <div>
-                        <p class="text-2xl font-bold text-pink-600" id="modalTitle"></p>
-                        <p class="text-xs text-gray-400 mt-1 uppercase">Lista de Presença, Idade e Valor</p>
+                        <h2 class="text-xl font-bold text-pink-600" id="modalTitle">Nome da Lista</h2>
+                        <p class="text-[10px] text-gray-400 uppercase font-bold tracking-widest">Detalhe dos Convidados</p>
                     </div>
-                    <button class="text-gray-400 hover:text-pink-600 transition-colors text-3xl font-bold" onclick="closeModal()">&times;</button>
+                    <button class="text-gray-300 hover:text-pink-600 text-3xl font-light" onclick="closeModal()">&times;</button>
                 </div>
                 
-                <!-- CONTAINER COM BARRA DE ROLAGEM -->
-                <div id="guestListContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 overflow-y-auto custom-scroll pr-4 pb-4">
-                    <!-- Nomes injetados via JS -->
+                <div id="modalListContent" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 overflow-y-auto custom-scroll pr-2 pb-6">
+                    <!-- JS Injeta os nomes -->
                 </div>
 
-                <div class="flex flex-col md:flex-row justify-between items-center pt-6 mt-6 border-t gap-4">
-                    <div class="flex gap-6 text-sm">
-                        <p class="text-gray-500">Adultos: <span class="font-bold text-pink-600" id="totalAdults">0</span></p>
-                        <p class="text-gray-500">Crianças: <span class="font-bold text-pink-600" id="totalKids">0</span></p>
+                <div class="mt-auto pt-6 border-t flex flex-col md:flex-row justify-between items-center gap-4">
+                    <div class="flex gap-4 text-xs font-bold text-gray-400">
+                        <p>CONVIVADOS: <span id="modalTotalCount" class="text-pink-500">0</span></p>
                     </div>
-                    <button class="bg-pink-600 px-10 py-3 rounded-xl text-white font-bold hover:bg-pink-700 transition-all shadow-md" onclick="closeModal()">Fechar Lista</button>
+                    <button class="bg-pink-600 text-white px-10 py-3 rounded-xl font-bold hover:bg-pink-700 transition-all shadow-lg text-sm" onclick="closeModal()">Fechar Lista</button>
                 </div>
             </div>
         </div>
     </div>
 
     <script>
-        const guestData = {
-            lista1: {
-                title: "Lista 1 | Amigos & Escola",
-                guests: [
-                    { name: "Mãe Manu", age: "5", price: "62.90" },
-                    { name: "Mãe Alice", age: "5", price: "62.90" },
-                    { name: "Mãe Catarina", age: "5", price: "62.90" },
-                    { name: "Mãe Julia", age: "5", price: "62.90" },
-                    { name: "Mãe Liz", age: "5", price: "62.90" },
-                    { name: "Mãe Laura Netto", age: "5", price: "62.90" },
-                    { name: "Mãe Laurinha", age: "5", price: "62.90" },
-                    { name: "Mãe Luisa", age: "5", price: "62.90" },
-                    { name: "Mãe Elisa", age: "5", price: "62.90" },
-                    { name: "Mãe da Aurora", age: "5", price: "62.90" },
-                    { name: "Andreia (Vovó)", age: "", price: "62.90" },
-                    { name: "Vanderleia", age: "", price: "62.90" },
-                    { name: "André", age: "", price: "62.90" },
-                    { name: "Alice", age: "Kid", price: "31.45" },
-                    { name: "Pai", age: "", price: "62.90" },
-                    { name: "Mãe", age: "", price: "62.90" },
-                    { name: "Liliane", age: "6", price: "62.90" },
-                    { name: "Giuliano", age: "", price: "62.90" },
-                    { name: "Manu", age: "Kid", price: "31.45" },
-                    { name: "Cristian", age: "2", price: "62.90" },
-                    { name: "Alessandra", age: "5", price: "62.90" },
-                    { name: "Carla", age: "3", price: "62.90" },
-                    { name: "Maicon", age: "", price: "62.90" },
-                    { name: "Kamille", age: "4", price: "62.90" },
-                    { name: "Erich", age: "", price: "62.90" },
-                    { name: "Má", age: "", price: "62.90" }
-                ]
-            },
-            lista2: {
-                title: "Lista 2 | Com Tio Toninho",
-                guests: [
-                    { name: "Mãe Manu", age: "5", price: "62.90" },
-                    { name: "Mãe Alice", age: "5", price: "62.90" },
-                    { name: "Mãe Catarina", age: "5", price: "62.90" },
-                    { name: "Mãe Julia", age: "5", price: "62.90" },
-                    { name: "Mãe Liz", age: "5", price: "62.90" },
-                    { name: "Mãe Laura Netto", age: "5", price: "62.90" },
-                    { name: "Mãe Laurinha", age: "5", price: "62.90" },
-                    { name: "Mãe Luisa", age: "5", price: "62.90" },
-                    { name: "Mãe Elisa", age: "5", price: "62.90" },
-                    { name: "Mãe da Aurora", age: "5", price: "62.90" },
-                    { name: "Andreia (Vovó)", age: "", price: "62.90" },
-                    { name: "Vanderleia", age: "", price: "62.90" },
-                    { name: "André", age: "", price: "62.90" },
-                    { name: "Alice", age: "Kid", price: "31.45" },
-                    { name: "Pai", age: "", price: "62.90" },
-                    { name: "Mãe", age: "", price: "62.90" },
-                    { name: "Liliane", age: "6", price: "62.90" },
-                    { name: "Giuliano", age: "", price: "62.90" },
-                    { name: "Manu", age: "Kid", price: "31.45" },
-                    { name: "Tio Toninho", age: "", price: "62.90" },
-                    { name: "Vera", age: "", price: "62.90" },
-                    { name: "Toninho", age: "", price: "62.90" },
-                    { name: "Ana", age: "", price: "62.90" },
-                    { name: "Lucas", age: "", price: "62.90" },
-                    { name: "Felipe", age: "", price: "62.90" },
-                    { name: "Cristian", age: "2", price: "62.90" },
-                    { name: "Alessandra", age: "5", price: "62.90" },
-                    { name: "Carla", age: "3", price: "62.90" },
-                    { name: "Maicon", age: "", price: "62.90" },
-                    { name: "Kamille", age: "4", price: "62.90" },
-                    { name: "Erich", age: "", price: "62.90" },
-                    { name: "Má", age: "", price: "62.90" }
-                ]
-            },
-            lista3: {
-                title: "Lista 3 | Toninho + Família Camara",
-                guests: [
-                    { name: "Mãe Manu", age: "5", price: "62.90" },
-                    { name: "Mãe Alice", age: "5", price: "62.90" },
-                    { name: "Mãe Catarina", age: "5", price: "62.90" },
-                    { name: "Mãe Julia", age: "5", price: "62.90" },
-                    { name: "Mãe Liz", age: "5", price: "62.90" },
-                    { name: "Mãe Laura Netto", age: "5", price: "62.90" },
-                    { name: "Mãe Laurinha", age: "5", price: "62.90" },
-                    { name: "Mãe Luisa", age: "5", price: "62.90" },
-                    { name: "Mãe Elisa", age: "5", price: "62.90" },
-                    { name: "Mãe da Aurora", age: "5", price: "62.90" },
-                    { name: "Andreia (Vovó)", age: "", price: "62.90" },
-                    { name: "Vanderleia", age: "", price: "62.90" },
-                    { name: "André", age: "", price: "62.90" },
-                    { name: "Alice", age: "Kid", price: "31.45" },
-                    { name: "Pai", age: "", price: "62.90" },
-                    { name: "Mãe", age: "", price: "62.90" },
-                    { name: "Liliane", age: "6", price: "62.90" },
-                    { name: "Giuliano", age: "", price: "62.90" },
-                    { name: "Manu", age: "Kid", price: "31.45" },
-                    { name: "Tio Toninho", age: "", price: "62.90" },
-                    { name: "Vera", age: "", price: "62.90" },
-                    { name: "Toninho", age: "", price: "62.90" },
-                    { name: "Ana", age: "", price: "62.90" },
-                    { name: "Lucas", age: "", price: "62.90" },
-                    { name: "Felipe", age: "", price: "62.90" },
-                    { name: "Tio Mario", age: "", price: "62.90" },
-                    { name: "Ziza", age: "", price: "62.90" },
-                    { name: "Tio Carlos", age: "", price: "62.90" },
-                    { name: "Tia Regina", age: "", price: "62.90" },
-                    { name: "Marinho", age: "", price: "62.90" },
-                    { name: "Gisele", age: "", price: "62.90" },
-                    { name: "Biel", age: "5", price: "62.90" },
-                    { name: "Bella", age: "1", price: "62.90" },
-                    { name: "Camila", age: "", price: "0.00" },
-                    { name: "Fábio", age: "", price: "0.00" },
-                    { name: "Cristian", age: "2", price: "62.90" },
-                    { name: "Alessandra", age: "5", price: "62.90" },
-                    { name: "Carla", age: "3", price: "62.90" },
-                    { name: "Maicon", age: "", price: "62.90" },
-                    { name: "Kamille", age: "4", price: "62.90" },
-                    { name: "Erich", age: "", price: "62.90" },
-                    { name: "Má", age: "", price: "62.90" }
-                ]
-            }
+        const extrasData = [
+            { id: 'polaris', label: 'Banda Polaris', value: 2000, active: true },
+            { id: 'brinquedos', label: 'Brinquedos', value: 700, active: true },
+            { id: 'tia', label: 'Tia de Brincar', value: 700, active: true },
+            { id: 'decor', label: 'Decoração', value: 300, active: true },
+            { id: 'mesas', label: 'Aluguel Mesas', value: 200, active: true }
+        ];
+
+        const buffetValues = {
+            lista1: 2421.65,
+            lista2: 2956.30,
+            lista3: 4151.40
         };
 
+        // Dados detalhados conforme planilha
+        const convidadosBase = [
+            { n: "Mãe Manu", a: "5", v: "62,90" }, { n: "Mãe Alice", a: "5", v: "62,90" }, { n: "Mãe Catarina", a: "5", v: "62,90" },
+            { n: "Mãe Julia", a: "5", v: "62,90" }, { n: "Mãe Liz", a: "5", v: "62,90" }, { n: "Mãe Laura Netto", a: "5", v: "62,90" },
+            { n: "Mãe Laurinha", a: "5", v: "62,90" }, { n: "Mãe Luisa", a: "5", v: "62,90" }, { n: "Mãe Elisa", a: "5", v: "62,90" },
+            { n: "Mãe da Aurora", a: "5", v: "62,90" }, { n: "Andreia (Vovó)", a: "", v: "62,90" }, { n: "Vanderleia", a: "", v: "62,90" },
+            { n: "André", a: "", v: "62,90" }, { n: "Alice", a: "Kid", v: "31,45" }, { n: "Pai", a: "", v: "62,90" },
+            { n: "Mãe", a: "", v: "62,90" }, { n: "Liliane", a: "6", v: "62,90" }, { n: "Giuliano", a: "", v: "62,90" },
+            { n: "Manu", a: "Kid", v: "31,45" }, { n: "Cristian", a: "2", v: "62,90" }, { n: "Alessandra", a: "5", v: "62,90" },
+            { n: "Carla", a: "3", v: "62,90" }, { n: "Maicon", a: "", v: "62,90" }, { n: "Kamille", a: "4", v: "62,90" },
+            { n: "Erich", a: "", v: "62,90" }, { n: "Má", a: "", v: "62,90" }, { n: "Edu (12 anos)", a: "Meia", v: "31,45" },
+            { n: "Lívia", a: "5", v: "62,90" }, { n: "Manu (12 anos)", a: "Meia", v: "31,45" }, { n: "Camila", a: "", v: "62,90" },
+            { n: "Fábio", a: "", v: "62,90" }, { n: "Convidado Escola 1", a: "5", v: "62,90" }, { n: "Convidado Escola 2", a: "5", v: "62,90" },
+            { n: "Convidado Escola 3", a: "5", v: "62,90" }, { n: "Convidado Escola 4", a: "5", v: "62,90" }, { n: "Pai Escola 1", a: "", v: "62,90" },
+            { n: "Mãe Escola 1", a: "", v: "62,90" }, { n: "Pai Escola 2", a: "", v: "62,90" }, { n: "Mãe Escola 2", a: "", v: "62,90" },
+            { n: "Amigo 1", a: "", v: "62,90" }
+        ];
+
+        const familiaToninho = [
+            { n: "Vera", a: "", v: "62,90" }, { n: "Tio Toninho", a: "", v: "62,90" }, { n: "Toninho", a: "", v: "62,90" },
+            { n: "Ana", a: "", v: "62,90" }, { n: "Lucas", a: "", v: "62,90" }, { n: "Felipe", a: "", v: "62,90" },
+            { n: "Meia Toninho 1", a: "Meia", v: "31,45" }, { n: "Meia Toninho 2", a: "Meia", v: "31,45" }, { n: "Meia Toninho 3", a: "Meia", v: "31,45" }
+        ];
+
+        const familiaCamara = [
+            { n: "Tio Mario", a: "", v: "62,90" }, { n: "Ziza", a: "", v: "62,90" }, { n: "Tio Carlos", a: "", v: "62,90" },
+            { n: "Tia Regina", a: "", v: "62,90" }, { n: "Marinho", a: "", v: "62,90" }, { n: "Gisele", a: "", v: "62,90" },
+            { n: "Biel", a: "5", v: "62,90" }, { n: "Bella", a: "1", v: "62,90" }, { n: "Camila Camara", a: "", v: "62,90" },
+            { n: "Fábio Camara", a: "", v: "62,90" }, { n: "Primo 1", a: "", v: "62,90" }, { n: "Primo 2", a: "", v: "62,90" },
+            { n: "Primo 3", a: "", v: "62,90" }, { n: "Primo 4", a: "", v: "62,90" }, { n: "Primo 5", a: "", v: "62,90" },
+            { n: "Primo 6", a: "", v: "62,90" }, { n: "Primo 7", a: "", v: "62,90" }, { n: "Primo 8", a: "", v: "62,90" },
+            { n: "Primo 9", a: "", v: "62,90" }
+        ];
+
+        const allLists = {
+            lista1: [...convidadosBase],
+            lista2: [...convidadosBase, ...familiaToninho],
+            lista3: [...convidadosBase, ...familiaToninho, ...familiaCamara]
+        };
+
+        function formatBRL(v) {
+            return v.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+        }
+
+        function updateTotals() {
+            let activeExtraTotal = extrasData.filter(e => e.active).reduce((s, e) => s + e.value, 0);
+            document.getElementById('globalExtraDisplay').innerText = formatBRL(activeExtraTotal);
+
+            ['lista1', 'lista2', 'lista3'].forEach(key => {
+                let buffetVal = buffetValues[key];
+                document.getElementById(`extra-${key}`).innerText = formatBRL(activeExtraTotal);
+                document.getElementById(`total-${key}`).innerText = formatBRL(buffetVal + activeExtraTotal);
+            });
+        }
+
+        function toggleExtra(id) {
+            const item = extrasData.find(e => e.id === id);
+            item.active = !item.active;
+            updateTotals();
+        }
+
         function openModal(key) {
-            const data = guestData[key];
-            const titleEl = document.getElementById('modalTitle');
-            const containerEl = document.getElementById('guestListContainer');
-            const adultEl = document.getElementById('totalAdults');
-            const kidEl = document.getElementById('totalKids');
-            const modal = document.getElementById('guestModal');
-
-            titleEl.innerText = data.title;
-            containerEl.innerHTML = '';
+            const data = allLists[key];
+            const titleMap = { 
+                lista1: "Cenário 1 | Sem Parentes", 
+                lista2: "Cenário 2 | Com Tio Toninho", 
+                lista3: "Cenário 3 | Completa (Toninho + Camara)" 
+            };
             
-            let adults = 0;
-            let kids = 0;
-
-            data.guests.forEach(guest => {
-                const isKid = guest.price === "31.45" || guest.age !== "";
-                const isPaid = guest.price !== "0.00";
-
-                if (isKid) kids++;
-                else if (isPaid) adults++;
-
-                const item = document.createElement('div');
-                item.className = 'flex flex-col bg-gray-50 border border-gray-100 p-3 rounded-xl hover:bg-pink-50 transition-colors shadow-sm';
-                
-                let ageBadge = guest.age ? `<span class="bg-pink-200 text-pink-700 text-[10px] px-2 py-0.5 rounded-full inline-block mt-1">${guest.age} anos</span>` : '';
-                
-                item.innerHTML = `
+            document.getElementById('modalTitle').innerText = titleMap[key];
+            const container = document.getElementById('modalListContent');
+            container.innerHTML = '';
+            
+            data.forEach(g => {
+                const card = document.createElement('div');
+                card.className = "p-3 bg-gray-50 border border-gray-100 rounded-xl flex flex-col hover:bg-pink-50 transition-colors";
+                card.innerHTML = `
                     <div class="flex justify-between items-start mb-1">
-                        <span class="font-bold text-gray-800 text-sm">${guest.name}</span>
-                        <span class="text-pink-500 font-bold text-xs">R$ ${guest.price}</span>
+                        <span class="text-xs font-bold text-gray-700">${g.n}</span>
+                        <span class="text-pink-500 font-bold text-[10px]">R$ ${g.v}</span>
                     </div>
-                    ${ageBadge}
+                    ${g.a ? `<span class="text-[8px] bg-pink-100 text-pink-600 px-2 py-0.5 rounded-full w-fit font-bold uppercase">${g.a} anos/meia</span>` : '<span class="text-[8px] text-gray-400">Adulto</span>'}
                 `;
-                containerEl.appendChild(item);
+                container.appendChild(card);
             });
 
-            adultEl.innerText = adults;
-            kidEl.innerText = kids;
-
-            modal.classList.remove('opacity-0', 'pointer-events-none');
+            document.getElementById('modalTotalCount').innerText = data.length;
+            document.getElementById('guestModal').classList.remove('opacity-0', 'pointer-events-none');
             document.body.classList.add('modal-active');
         }
 
         function closeModal() {
-            const modal = document.getElementById('guestModal');
-            modal.classList.add('opacity-0', 'pointer-events-none');
+            document.getElementById('guestModal').classList.add('opacity-0', 'pointer-events-none');
             document.body.classList.remove('modal-active');
         }
+
+        window.onload = () => {
+            const container = document.getElementById('extrasContainer');
+            extrasData.forEach(item => {
+                const label = document.createElement('label');
+                label.className = "flex items-center justify-between p-3 bg-pink-50 border border-pink-100 rounded-2xl cursor-pointer hover:bg-pink-100 transition-all";
+                label.innerHTML = `
+                    <div class="flex flex-col">
+                        <span class="text-[9px] font-black text-pink-400 uppercase leading-none mb-1">${item.label}</span>
+                        <span class="text-xs font-bold text-gray-700">${formatBRL(item.value)}</span>
+                    </div>
+                    <input type="checkbox" ${item.active ? 'checked' : ''} class="checkbox-pink w-4 h-4 rounded-md accent-pink-600" 
+                           onchange="toggleExtra('${item.id}')">
+                `;
+                container.appendChild(label);
+            });
+            updateTotals();
+        };
     </script>
 </body>
 </html>
